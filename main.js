@@ -1,33 +1,33 @@
 var SpeechRecognition = window.webkitSpeechRecognition;
-
+ 
 var recognition = new SpeechRecognition();
-
+ 
 var Textbox = document.getElementById("textbox");
-
-// inicia a cognição
+ 
+//iniciar cognição
 function start()
 {
     Textbox.innerHTML = "";
     recognition.start();
 }
-
-//Amarzena a frase em uma variavel
+ 
 recognition.onresult = function(event) {
  
-    console.log(event);
-    
-   var Content = event.results[0][0].transcript;
-    
-       Textbox.innerHTML = Content;
-       console.log(Content);
-         if(Content =="tire minha selfie")
-         {
-           console.log("tirando selfie --- ");
-           speak();
-         }
-   }
-    
-   function speak(){
+ console.log(event);
+ 
+var Content = event.results[0][0].transcript;
+ 
+    Textbox.innerHTML = Content;
+    console.log(Content);
+      if(Content =="tire minha selfie")
+      {
+        console.log("tirando selfie --- ");
+        speak();
+      }
+}
+ 
+//Armazena a frase em uma variavel
+function speak(){
     var synth = window.speechSynthesis;
  
     speakData = "Tirando sua selfie em 5 segundos";
@@ -35,18 +35,18 @@ recognition.onresult = function(event) {
     var utterThis = new SpeechSynthesisUtterance(speakData);
  
     synth.speak(utterThis);
-   }
  
-   Webcam.attach(camera);
+    Webcam.attach(camera);
  
     setTimeout(function()
     {
         takeSelfie();
         save();
     }, 5000);
+}
+ 
  
 camera = document.getElementById("camera");
- 
 Webcam.set({
     width:360,
     height:250,
